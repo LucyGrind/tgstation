@@ -285,7 +285,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	if(glass.reagents.trans_to(src, chem_volume, transferred_by = user)) //if reagents were transferred, show the message
 		to_chat(user, span_notice("You dip \the [src] into \the [glass]."))
-	//if not, either the beaker was empty, or the cigarette was full
+	//if not, either the beaker was empty, or the cigarette was full (or it's a mortar!)
+	if(istype(glass, /obj/item/reagent_containers/cup/mortar))
+		return NONE
 	else if(!glass.reagents.total_volume)
 		to_chat(user, span_warning("[glass] is empty!"))
 	else
