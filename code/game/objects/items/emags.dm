@@ -27,6 +27,8 @@
 	desc = "It's a blue card with a magnetic strip attached to some circuitry. It appears to have some sort of transmitter attached to it."
 	icon_state = "bluemag"
 	prox_check = FALSE
+	/var/pshoom = 'sound/items/pshoom.ogg'
+	/var/pshoom_2 = 'sound/items/pshoom_2.ogg'
 
 /obj/item/card/emag/halloween
 	name = "hack-o'-lantern"
@@ -64,6 +66,12 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/card/emag/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if (can_emag(interacting_with, user))
+		if(alt_sound && prob(1))
+			playsound(src, alt_sound, 40, TRUE)
+		else
+			playsound(src, pshoom_or_beepboopblorpzingshadashwoosh, 40, TRUE)
+		user.Beam(interacting_with, icon_state = "rped_upgrade", time = 0.5 SECONDS)
 	return prox_check ? NONE : interact_with_atom(interacting_with, user)
 
 /obj/item/card/emag/proc/can_emag(atom/target, mob/user)
