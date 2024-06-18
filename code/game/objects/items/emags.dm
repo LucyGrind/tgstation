@@ -25,7 +25,7 @@
 /obj/item/card/emag/bluespace
 	name = "bluespace cryptographic sequencer"
 	desc = "It's a blue card with a magnetic strip attached to some circuitry. It appears to have some sort of transmitter attached to it."
-	color = rgb(40, 130, 255)
+	icon_state = "bluemag"
 	prox_check = FALSE
 
 /obj/item/card/emag/halloween
