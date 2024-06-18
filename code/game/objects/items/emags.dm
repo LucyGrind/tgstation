@@ -73,6 +73,12 @@
 		user.Beam(interacting_with, icon_state = "rped_upgrade", time = 0.5 SECONDS)
 	return prox_check ? NONE : interact_with_atom(interacting_with, user)
 
+/obj/item/card/emag/proc/item_interaction(mob/living/user, obj/item/tool)
+	if (istype(tool, /obj/item/assembly/signaler/anomaly/bluespace))
+		qdel(src)
+		user.put_in_active_hand(new /obj/item/card/emag/bluespace)
+	else return NONE
+
 /obj/item/card/emag/proc/can_emag(atom/target, mob/user)
 	for (var/subtypelist in type_blacklist)
 		if (target.type in subtypelist)
